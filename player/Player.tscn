@@ -1,14 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgmkh8oi52r34"]
+[gd_scene load_steps=7 format=3 uid="uid://cgmkh8oi52r34"]
 
+[ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_0i4dt"]
 [ext_resource type="PackedScene" uid="uid://d1tl07geqm5xq" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_fullglove_hand.tscn" id="1_xnwk0"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_3vh2r"]
 [ext_resource type="PackedScene" uid="uid://bpdj5njb8nhot" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_fullglove_hand.tscn" id="2_voaq5"]
-[ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="3_iprqo"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_rphva"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_d8uy6"]
 
 [node name="Player" type="XROrigin3D"]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
+
+[node name="VRCommonShaderCache" parent="XRCamera3D" instance=ExtResource("1_0i4dt")]
 
 [node name="LeftHandController" type="XRController3D" parent="."]
 tracker = &"left_hand"
@@ -17,8 +20,8 @@ tracker = &"left_hand"
 
 [node name="FunctionPickup" parent="LeftHandController/LeftHand" instance=ExtResource("2_3vh2r")]
 
-[node name="FunctionTeleport" parent="LeftHandController/LeftHand" instance=ExtResource("3_iprqo")]
-player_radius = 0.2
+[node name="MovementDirect" parent="LeftHandController/LeftHand" instance=ExtResource("4_rphva")]
+strafe = true
 
 [node name="RightHandController" type="XRController3D" parent="."]
 tracker = &"right_hand"
@@ -28,3 +31,4 @@ tracker = &"right_hand"
 [node name="FunctionPickup" parent="RightHandController/RightHand" instance=ExtResource("2_3vh2r")]
 
 [node name="PlayerBody" parent="." instance=ExtResource("5_d8uy6")]
+player_calibrate_height = false

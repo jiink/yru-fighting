@@ -28,6 +28,11 @@ project/assembly_name="YRU-Fighting"
 
 enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
 
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+
 [xr]
 
 openxr/enabled=true

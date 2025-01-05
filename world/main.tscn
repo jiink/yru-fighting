@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dswny631r0o67"]
+[gd_scene load_steps=19 format=3 uid="uid://dswny631r0o67"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_4roit"]
 [ext_resource type="PackedScene" uid="uid://cgmkh8oi52r34" path="res://player/Player.tscn" id="2_ku4mj"]
@@ -24,6 +24,9 @@ albedo_color = Color(0.25246, 0.436052, 0.474162, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_18m2o"]
 material = SubResource("StandardMaterial3D_sw6vc")
 size = Vector2(10, 10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lxqu8"]
+points = PackedVector3Array(-5, 0, -5, -5, 0, 5, 5, 0, -5, 5, 0, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4p1db"]
 albedo_color = Color(0.59964, 0.59964, 0.59964, 1)
@@ -76,10 +79,16 @@ shadow_enabled = true
 script = ExtResource("1_4roit")
 
 [node name="Player" parent="." instance=ExtResource("2_ku4mj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53203, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_18m2o")
 skeleton = NodePath("../WorldEnvironment")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_lxqu8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
