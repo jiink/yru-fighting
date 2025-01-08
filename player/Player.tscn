@@ -31,4 +31,5 @@ tracker = &"right_hand"
 [node name="FunctionPickup" parent="RightHandController/RightHand" instance=ExtResource("2_3vh2r")]
 
 [node name="PlayerBody" parent="." instance=ExtResource("5_d8uy6")]
+enabled = false
 player_calibrate_height = false

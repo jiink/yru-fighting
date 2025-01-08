@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dswny631r0o67"]
+[gd_scene load_steps=17 format=3 uid="uid://dswny631r0o67"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_4roit"]
 [ext_resource type="PackedScene" uid="uid://cuiqhk8a4386u" path="res://tank/tank.tscn" id="1_uhx1a"]
@@ -18,16 +18,6 @@ sky_material = SubResource("ProceduralSkyMaterial_wkh68")
 [sub_resource type="Environment" id="Environment_7fdlb"]
 background_mode = 2
 sky = SubResource("Sky_g2iki")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sw6vc"]
-albedo_color = Color(0.25246, 0.436052, 0.474162, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_18m2o"]
-material = SubResource("StandardMaterial3D_sw6vc")
-size = Vector2(10, 10)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lxqu8"]
-points = PackedVector3Array(-5, 0, -5, -5, 0, 5, 5, 0, -5, 5, 0, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4p1db"]
 albedo_color = Color(0.59964, 0.59964, 0.59964, 1)
@@ -69,8 +59,11 @@ points = PackedVector3Array(-0.0476007, -0.0107106, -0.00952381, -0.0888861, -0.
 
 [node name="Main" type="Node3D"]
 
+[node name="Player" parent="." instance=ExtResource("2_ku4mj")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.162858, 2.03353, 2.94494)
+
 [node name="Tank" parent="." instance=ExtResource("1_uhx1a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112185, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00148678, 1.07988, 2.87632)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7fdlb")
@@ -82,19 +75,8 @@ shadow_enabled = true
 [node name="XRToolsStartXR" type="Node" parent="."]
 script = ExtResource("1_4roit")
 
-[node name="Player" parent="." instance=ExtResource("2_ku4mj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53203, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_18m2o")
-skeleton = NodePath("../WorldEnvironment")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_lxqu8")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04074, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.463041, -1.06805)
@@ -105,7 +87,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.463041, -1.06805)
 shape = SubResource("ConvexPolygonShape3D_qfn41")
 
 [node name="PickableObject" parent="." instance=ExtResource("3_0sydv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08099, -0.835177)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91954, 1.08099, -0.835177)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PickableObject"]
 mesh = SubResource("TorusMesh_78d1f")
@@ -121,3 +103,10 @@ shape = SubResource("ConvexPolygonShape3D_ckxl2")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="PickableObject"]
 shape = SubResource("ConvexPolygonShape3D_qdrm4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(40, 1, 40)
+
+[editable path="Tank"]
