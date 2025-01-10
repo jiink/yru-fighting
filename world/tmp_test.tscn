@@ -37,8 +37,15 @@ size = Vector3(40, 1, 40)
 [node name="Tank" parent="." instance=ExtResource("1_0w8oj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.446449, 0)
 
-[node name="FlatscreenPlayer" parent="Tank" instance=ExtResource("2_hc5dh")]
+[node name="FlatscreenPlayer" parent="Tank/RigidBody3D" index="8" instance=ExtResource("2_hc5dh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133096, 1.43371, -0.319815)
+collision_layer = 0
+collision_mask = 0
+axis_lock_linear_y = true
+platform_on_leave = 2
+platform_floor_layers = 0
 
 [node name="throwable_item" parent="." instance=ExtResource("4_rxg5r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.89504, 2.84982)
+
+[editable path="Tank"]
