@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class RigidBody3d : VehicleBody3D
+public partial class Tank : VehicleBody3D
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

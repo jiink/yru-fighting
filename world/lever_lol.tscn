@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://bo0pictpm0ea3"]
+
+[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_hinge.gd" id="1_dqiux"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_handle.gd" id="2_vfb41"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="3_nwnpq"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_redirect.gd" id="3_ve54y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sao0y"]
+radius = 0.05
+height = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pcaop"]
+radius = 0.05
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1kswl"]
+top_radius = 0.025
+bottom_radius = 0.05
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4pf6y"]
+size = Vector3(0.2, 0.1, 0.4)
+
+[node name="lever_lol" type="Node3D"]
+
+[node name="XRToolsInteractableHinge" type="Node3D" parent="."]
+script = ExtResource("1_dqiux")
+hinge_limit_min = -30.0
+hinge_limit_max = 30.0
+default_on_release = true
+
+[node name="handleOrigin" type="Node3D" parent="XRToolsInteractableHinge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="XRToolsInteractableHandle" type="RigidBody3D" parent="XRToolsInteractableHinge/handleOrigin"]
+script = ExtResource("2_vfb41")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XRToolsInteractableHinge/handleOrigin/XRToolsInteractableHandle"]
+shape = SubResource("CapsuleShape3D_sao0y")
+
+[node name="XRToolsGrabPointRedirect" type="Marker3D" parent="XRToolsInteractableHinge/handleOrigin/XRToolsInteractableHandle" node_paths=PackedStringArray("target")]
+script = ExtResource("3_ve54y")
+target = NodePath("../../../StaticBody3D/MeshInstance3D/XRToolsGrabPointHand")
+
+[node name="XRToolsGrabPointRedirect2" type="Marker3D" parent="XRToolsInteractableHinge/handleOrigin/XRToolsInteractableHandle" node_paths=PackedStringArray("target")]
+script = ExtResource("3_ve54y")
+target = NodePath("../../../StaticBody3D/MeshInstance3D/XRToolsGrabPointHand2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="XRToolsInteractableHinge"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XRToolsInteractableHinge/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_pcaop")
+skeleton = NodePath("../../handleOrigin/XRToolsInteractableHandle")
+
+[node name="XRToolsGrabPointHand" type="Marker3D" parent="XRToolsInteractableHinge/StaticBody3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18112, -0.0689271)
+script = ExtResource("3_nwnpq")
+
+[node name="XRToolsGrabPointHand2" type="Marker3D" parent="XRToolsInteractableHinge/StaticBody3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18112, -0.0689271)
+script = ExtResource("3_nwnpq")
+hand = 1
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="XRToolsInteractableHinge/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CylinderMesh_1kswl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="XRToolsInteractableHinge/StaticBody3D"]
+mesh = SubResource("BoxMesh_4pf6y")
+skeleton = NodePath("../../..")
