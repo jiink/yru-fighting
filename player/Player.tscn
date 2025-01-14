@@ -31,10 +31,13 @@ tracker = &"right_hand"
 [node name="FunctionPickup" parent="RightHandController/RightHand" instance=ExtResource("2_3vh2r")]
 
 [node name="PlayerBody" parent="." instance=ExtResource("5_d8uy6")]
-collision_mask = 1022
+collision_mask = 0
 axis_lock_linear_y = true
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_block_on_wall = false
 platform_on_leave = 2
-platform_floor_layers = 4294967294
+platform_floor_layers = 4294901760
 player_calibrate_height = false
 push_rigid_bodies = false
 ground_control = 2
