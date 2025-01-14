@@ -3,14 +3,36 @@ using System;
 
 public partial class Tank : VehicleBody3D
 {
-	// Called when the node enters the scene tree for the first time.
+	[Export]
+	public TankLever leverL;
+	[Export]
+	public TankLever leverR;
+
+	public Tank() {}
+
 	public override void _Ready()
 	{
-		EngineForce = 20.0f;
+		leverL = GetNode<TankLever>("LeverLeft");// as TankLever;
+		leverR = GetNode<TankLever>("LeverRight");// as TankLever;
+		if (leverL is null || leverR is null)
+		{
+			throw new InvalidOperationException("WTF!!!!!!!!!!");
+		}
+		GD.Print($">>>>>>>>>{leverL.Name} {leverR.Name}!!!!!!!!!");
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 	}
+
+    public override void _PhysicsProcess(double delta)
+    {
+		// const float steeringRange = (float)Math.PI / 2.0f;
+		// const float engineScale = 100.0f;
+		// Steering = (leverL.Value - leverR.Value) * steeringRange;
+		// EngineForce = (leverL.Value + leverR.Value) * -0.5f * engineScale;
+		Steering = leverL.Value * 1.5f;
+		EngineForce = leverR.Value * 90.0f;
+        base._PhysicsProcess(delta);
+    }
 }

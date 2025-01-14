@@ -3,13 +3,12 @@ using System;
 
 public partial class Textboxparent : Node3D
 {
-    private Node3D _targetObject;
-    private float _targetVariable;
+    private TankLever _targetObject;
     private Label3D _label;
 
     public override void _Ready()
     {
-        _targetObject = GetParent().GetNode<Node3D>("XRToolsInteractableHinge");
+        _targetObject = GetParent<TankLever>();
         _label = GetNode<Label3D>("rotationlabel");
 //        if (TargetObject == null || string.IsNullOrEmpty(TargetVariableString))
 //        {
@@ -20,8 +19,7 @@ public partial class Textboxparent : Node3D
 
     public override void _Process(double delta)
     {
-        _targetVariable = (float)_targetObject.Get("hinge_position");
-        GD.Print($"My Variable: {_targetVariable}");
-        _label.Text = $"{Math.Round(_targetVariable, 1)}";
+        float v = _targetObject.Value;
+        _label.Text = $"{Math.Round(v, 1)}";
     }
 }

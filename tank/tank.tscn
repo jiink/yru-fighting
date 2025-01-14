@@ -1,13 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuiqhk8a4386u"]
+[gd_scene load_steps=9 format=3 uid="uid://cuiqhk8a4386u"]
 
 [ext_resource type="Script" path="res://tank/Tank.cs" id="1_50iol"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nce55"]
-albedo_color = Color(1, 0, 1, 1)
-roughness = 0.5
+[ext_resource type="Material" uid="uid://cyi00euljig33" path="res://tank/tank_body.tres" id="2_flynd"]
+[ext_resource type="PackedScene" uid="uid://dgj4efwj0oi7q" path="res://tank/tank_lever.tscn" id="3_flwq2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_q7key"]
-material = SubResource("StandardMaterial3D_nce55")
+material = ExtResource("2_flynd")
 size = Vector3(1.5, 0.125, 3)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ylid5"]
@@ -22,11 +20,13 @@ ring_segments = 16
 [sub_resource type="BoxMesh" id="BoxMesh_dqea6"]
 size = Vector3(0.5, 0.2, 0.2)
 
+[sub_resource type="BoxMesh" id="BoxMesh_lmral"]
+size = Vector3(1, 1, 0.1)
+
 [node name="Tank" type="Node3D"]
 
 [node name="RigidBody3D" type="VehicleBody3D" parent="."]
 mass = 200.0
-engine_force = 20.0
 script = ExtResource("1_50iol")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
@@ -38,9 +38,7 @@ shape = SubResource("ConvexPolygonShape3D_ylid5")
 
 [node name="VehicleWheel3D" type="VehicleWheel3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.889526, -0.00437535, 1.41053)
-engine_force = 20.0
 use_as_traction = true
-use_as_steering = true
 suspension_stiffness = 50.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/VehicleWheel3D"]
@@ -53,9 +51,7 @@ mesh = SubResource("BoxMesh_dqea6")
 
 [node name="VehicleWheel3D4" type="VehicleWheel3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.89, -0.004, 1.411)
-engine_force = 20.0
 use_as_traction = true
-use_as_steering = true
 suspension_stiffness = 50.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/VehicleWheel3D4"]
@@ -68,7 +64,6 @@ mesh = SubResource("BoxMesh_dqea6")
 
 [node name="VehicleWheel3D2" type="VehicleWheel3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.889526, -0.00437535, -1.41712)
-engine_force = 20.0
 use_as_traction = true
 use_as_steering = true
 suspension_stiffness = 50.0
@@ -83,7 +78,6 @@ mesh = SubResource("BoxMesh_dqea6")
 
 [node name="VehicleWheel3D3" type="VehicleWheel3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.89, -0.004, -1.417)
-engine_force = 20.0
 use_as_traction = true
 use_as_steering = true
 suspension_stiffness = 50.0
@@ -98,9 +92,7 @@ mesh = SubResource("BoxMesh_dqea6")
 
 [node name="VehicleWheel3D5" type="VehicleWheel3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89, -0.004, 0)
-engine_force = 20.0
 use_as_traction = true
-use_as_steering = true
 suspension_stiffness = 50.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/VehicleWheel3D5"]
@@ -114,9 +106,7 @@ mesh = SubResource("BoxMesh_dqea6")
 
 [node name="VehicleWheel3D6" type="VehicleWheel3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.89, -0.004, 0)
-engine_force = 20.0
 use_as_traction = true
-use_as_steering = true
 suspension_stiffness = 50.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/VehicleWheel3D6"]
@@ -127,3 +117,23 @@ skeleton = NodePath("../../VehicleWheel3D5")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/VehicleWheel3D6/MeshInstance3D"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_dqea6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.926824, 0.375496, 0, -0.375496, 0.926824, 0, 0.428974, -1.52733)
+material_override = ExtResource("2_flynd")
+mesh = SubResource("BoxMesh_lmral")
+
+[node name="LeverLeft" parent="RigidBody3D" instance=ExtResource("3_flwq2")]
+transform = Transform3D(1, 0, 0, 0, 0.423994, -0.905665, 0, 0.905665, 0.423994, -0.316756, 0.651769, -1.49525)
+
+[node name="rotationlabel" parent="RigidBody3D/LeverLeft/Textboxparent" index="0"]
+transform = Transform3D(0.983076, 0.059783, -0.173167, 0.172848, 0.0105113, 0.984893, 0.0607, -0.998156, 2.93429e-08, -0.293904, -1.69502, -0.154119)
+
+[node name="LeverRight" parent="RigidBody3D" instance=ExtResource("3_flwq2")]
+transform = Transform3D(1, 0, 0, 0, 0.423994, -0.905665, 0, 0.905665, 0.423994, 0.308286, 0.651769, -1.49525)
+
+[node name="Textboxparent" parent="RigidBody3D/LeverRight" index="2"]
+transform = Transform3D(-0.137188, 0.190265, -0.9721, 0.981855, 0.155831, -0.108064, 0.130923, -0.969286, -0.20819, 0.416987, 0.355532, -0.119637)
+
+[editable path="RigidBody3D/LeverLeft"]
+[editable path="RigidBody3D/LeverRight"]
