@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6fppnfkn6ytq"]
+
+[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_hinge.gd" id="1_rghlw"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_handle.gd" id="2_e1y43"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bcu13"]
+height = 0.05
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1r1w"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7esxs"]
+material = SubResource("StandardMaterial3D_q1r1w")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.05
+radial_segments = 10
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WheelHinge" type="Node3D" parent="."]
+script = ExtResource("1_rghlw")
+hinge_limit_min = -360.0
+hinge_limit_max = 360.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WheelHinge"]
+
+[node name="SteeringWheelCollision" type="CollisionShape3D" parent="WheelHinge/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_bcu13")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WheelHinge/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_7esxs")
+
+[node name="handle_origin" type="Node3D" parent="WheelHinge"]
+
+[node name="XRToolsInteractableHandle" type="RigidBody3D" parent="WheelHinge/handle_origin"]
+script = ExtResource("2_e1y43")
