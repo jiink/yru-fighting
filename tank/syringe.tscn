@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://damn8i4yddr4y"]
+
+[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_slider.gd" id="1_crko0"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_handle.gd" id="2_r8qs4"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pfaly"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jqal4"]
+points = PackedVector3Array(0.186824, 0.463874, 0.0708561, -0.190797, -0.465839, -0.0597801, -0.191705, -0.468075, 0.0568848, -0.191705, 0.468075, 0.0568848, 0.0568848, 0.468075, -0.191705, 0.185824, -0.46141, -0.0736459, 0.0708561, -0.463874, 0.186824, -0.0736459, 0.46141, 0.185824, -0.0597801, -0.465839, -0.190797, -0.117774, 0.464895, -0.161358, -0.102516, -0.461558, 0.17146, 0.185824, 0.46141, -0.0736459, 0.186824, -0.463874, 0.0708561, 0.100166, 0.465327, 0.172873, 0.0987952, -0.459058, -0.173698, -0.190797, 0.465839, -0.0597801, -0.161358, -0.464895, -0.117774, 0.1414, -0.457676, 0.1414, -0.173698, 0.459058, 0.0987952, -0.0597801, 0.465839, -0.190797, 0.17146, 0.461558, -0.102516, 0.0568848, -0.468075, -0.191705, 0.0708561, 0.463874, 0.186824, -0.0736459, -0.46141, 0.185824, -0.173698, -0.459058, 0.0987952, 0.0987952, 0.459058, -0.173698, 0.172873, 0.465327, 0.100166, -0.117774, -0.464895, -0.161358, -0.161358, 0.464895, -0.117774, 0.17146, -0.461558, -0.102516, -0.102516, 0.461558, 0.17146, 0.1414, 0.457676, 0.1414)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6hj0a"]
+top_radius = 0.1
+bottom_radius = 0.0
+height = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_rhucs"]
+size = Vector3(0.5, 0.05, 0.05)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2nxun"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.05
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d8mlq"]
+points = PackedVector3Array(0.0380654, 0.0289683, 0.203175, -0.0338359, -0.025, -0.1806, -0.0564285, -0.025, -0.174943, -0.0634821, 0.0289683, -0.19681, 0.19681, 0.0289683, -0.0634821, 0.158007, -0.025, 0.0959215, -0.169286, -0.025, 0.0733642, -0.203175, 0.0289683, -0.0380654, 0.112857, -0.025, -0.146728, -0.0338359, -0.025, 0.1806, -0.126964, 0.0289683, 0.165069, 0.177758, 0.0289683, 0.107912, 0.0825347, 0.0289683, -0.190446, -0.158007, -0.025, -0.0959215, 0.1806, -0.025, -0.0338359, 0.0959215, -0.025, 0.158007, -0.126964, 0.0289683, -0.165069, -0.190446, 0.0289683, 0.0825347, 0.203175, 0.0289683, 0.0380654, 0.165069, 0.0289683, -0.126964, -0.112857, -0.025, 0.146728, 0.126964, 0.0289683, 0.165069, -0.1806, -0.025, 0.0338359, -0.0634821, 0.0289683, 0.19681, 0.0338359, -0.025, -0.1806, 0.158007, -0.025, -0.0959215, -0.177758, 0.0289683, -0.107912, 0.0380654, 0.0289683, -0.203175, -0.112857, -0.025, -0.146728, 0.0338359, -0.025, 0.1806, -0.1806, -0.025, -0.0338359, 0.1806, -0.025, 0.0338359)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8xgs3"]
+height = 0.05
+radius = 0.2
+
+[node name="Syringe" type="Node3D"]
+
+[node name="SliderOrigin" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="XRToolsInteractableSlider" type="Node3D" parent="SliderOrigin"]
+script = ExtResource("1_crko0")
+slider_limit_min = -0.5
+slider_limit_max = 0.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SliderOrigin/XRToolsInteractableSlider"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SliderOrigin/XRToolsInteractableSlider/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.5, 0, 0)
+mesh = SubResource("CylinderMesh_pfaly")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SliderOrigin/XRToolsInteractableSlider/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_jqal4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SliderOrigin/XRToolsInteractableSlider/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.25, 0, 0)
+mesh = SubResource("CylinderMesh_6hj0a")
+
+[node name="HandleOriginSyringe" type="Node3D" parent="SliderOrigin/XRToolsInteractableSlider"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="XRToolsInteractableHandle" type="RigidBody3D" parent="SliderOrigin/XRToolsInteractableSlider/HandleOriginSyringe"]
+collision_layer = 255
+collision_mask = 255
+script = ExtResource("2_r8qs4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SliderOrigin/XRToolsInteractableSlider/HandleOriginSyringe/XRToolsInteractableHandle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("ConvexPolygonShape3D_jqal4")
+
+[node name="Slider2Origin" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.5897e-08, 1.05, 0)
+
+[node name="XRToolsInteractableSlider" type="Node3D" parent="Slider2Origin"]
+script = ExtResource("1_crko0")
+slider_limit_max = 0.5
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Slider2Origin/XRToolsInteractableSlider"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Slider2Origin/XRToolsInteractableSlider/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0)
+mesh = SubResource("BoxMesh_rhucs")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Slider2Origin/XRToolsInteractableSlider/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_2nxun")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Slider2Origin/XRToolsInteractableSlider/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_d8mlq")
+
+[node name="HandleOriginPlunger" type="RigidBody3D" parent="Slider2Origin/XRToolsInteractableSlider"]
+collision_layer = 255
+collision_mask = 255
+script = ExtResource("2_r8qs4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Slider2Origin/XRToolsInteractableSlider/HandleOriginPlunger"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_8xgs3")

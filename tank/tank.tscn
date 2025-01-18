@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuiqhk8a4386u"]
+[gd_scene load_steps=11 format=3 uid="uid://cuiqhk8a4386u"]
 
 [ext_resource type="Script" path="res://tank/Tank.cs" id="1_50iol"]
 [ext_resource type="Material" uid="uid://cyi00euljig33" path="res://tank/tank_body.tres" id="2_flynd"]
 [ext_resource type="PackedScene" uid="uid://dgj4efwj0oi7q" path="res://tank/tank_lever.tscn" id="3_flwq2"]
 [ext_resource type="PackedScene" uid="uid://c6fppnfkn6ytq" path="res://tank/SteeringWheel.tscn" id="4_g6ys7"]
+[ext_resource type="PackedScene" uid="uid://damn8i4yddr4y" path="res://tank/syringe.tscn" id="5_4ed41"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_q7key"]
 material = ExtResource("2_flynd")
@@ -138,6 +139,9 @@ transform = Transform3D(-0.137188, 0.190265, -0.9721, 0.981855, 0.155831, -0.108
 
 [node name="Node3D" parent="RigidBody3D" instance=ExtResource("4_g6ys7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07066, 1.10545)
+
+[node name="Syringe" parent="." instance=ExtResource("5_4ed41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.286843, 1.81265)
 
 [editable path="RigidBody3D/LeverLeft"]
 [editable path="RigidBody3D/LeverRight"]
