@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://damn8i4yddr4y"]
+[gd_scene load_steps=7 format=3 uid="uid://damn8i4yddr4y"]
 
-[ext_resource type="Script" path="res://addons/godot-xr-tools/interactables/interactable_slider.gd" id="1_crko0"]
-[ext_resource type="PackedScene" uid="uid://bddj5m7ull6g0" path="res://addons/godot-xr-tools/interactables/interactable_handle.tscn" id="2_rmpd6"]
+[ext_resource type="Script" path="res://tank/SyringeBody.cs" id="1_t65s0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbt4k"]
+albedo_color = Color(0.714615, 0.997743, 0.869395, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_pfaly"]
+material = SubResource("StandardMaterial3D_hbt4k")
 top_radius = 0.2
 bottom_radius = 0.2
 height = 1.0
@@ -16,30 +19,59 @@ height = 0.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dn8u"]
 size = Vector3(1.01, 0.4, 0.4)
 
+[sub_resource type="BoxMesh" id="BoxMesh_4iq8c"]
+size = Vector3(0.325, 0.06, 0.065)
+
 [node name="Syringe" type="Node3D"]
 
-[node name="SliderOrigin" type="Node3D" parent="."]
+[node name="SyringeBody" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 196615
+script = ExtResource("1_t65s0")
 
-[node name="XRToolsInteractableSlider" type="Node3D" parent="SliderOrigin"]
-script = ExtResource("1_crko0")
-slider_limit_min = -0.5
-slider_limit_max = 0.0
-
-[node name="StaticBody3D" type="Node3D" parent="SliderOrigin/XRToolsInteractableSlider"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SliderOrigin/XRToolsInteractableSlider/StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SyringeBody"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.5, 0, 0)
 mesh = SubResource("CylinderMesh_pfaly")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="SliderOrigin/XRToolsInteractableSlider/StaticBody3D"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SyringeBody"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.25, 0, 0)
 mesh = SubResource("CylinderMesh_6hj0a")
+skeleton = NodePath("")
 
-[node name="InteractableHandle" parent="SliderOrigin/XRToolsInteractableSlider" instance=ExtResource("2_rmpd6")]
-snap_distance = 2.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SliderOrigin/XRToolsInteractableSlider/InteractableHandle"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SyringeBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49869, 0, 0)
 shape = SubResource("BoxShape3D_7dn8u")
+
+[node name="Handle" type="Node3D" parent="SyringeBody"]
+
+[node name="Handle" type="MeshInstance3D" parent="SyringeBody/Handle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.63188, -0.151527, 0.123854)
+mesh = SubResource("BoxMesh_4iq8c")
+skeleton = NodePath("../..")
+
+[node name="Mount" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mount"]
+transform = Transform3D(1, 0, 0, 0, 0.784863, 0.619669, 0, -0.619669, 0.784863, -0.33382, 0.465781, 0.320624)
+size = Vector3(0.105225, 1, 0.236816)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Mount"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325619, 0.104205, 0.632122)
+size = Vector3(0.253662, 0.210571, 0.290771)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Mount"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.243904, 0.443929, 0.0122178)
+size = Vector3(0.0839844, 0.865692, 0.059021)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Mount"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00476837, 0.0224953, 0.0032196)
+size = Vector3(0.539352, 0.0256042, 0.539581)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Mount"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mount/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00112915, -0.000377595, -0.00726318)
+size = Vector3(0.450623, 0.290527, 0.447388)

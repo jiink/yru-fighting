@@ -264,8 +264,11 @@ func _update_colliders() -> void:
 # Called when an object enters the grab sphere
 func _on_grab_entered(target: Node3D) -> void:
 	# reject objects which don't support picking up
+	print(">>>> Oh. Is that a " + target.name + "?")
 	if not target.has_method('pick_up'):
+		print(">>>> " + target.name + " has no pick up.")
 		return
+	
 
 	# ignore objects already known
 	if _object_in_grab_area.find(target) >= 0:

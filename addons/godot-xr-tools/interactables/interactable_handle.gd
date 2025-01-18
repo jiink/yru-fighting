@@ -41,7 +41,7 @@ func _ready() -> void:
 	transform = Transform3D.IDENTITY
 
 	# Turn off processing - it will be turned on only when held
-	set_process(false)
+	#set_process(false)
 
 
 # Called on every frame when the handle is held to check for snapping
@@ -72,7 +72,7 @@ func let_go(by: Node3D, _p_linear_velocity: Vector3, _p_angular_velocity: Vector
 	super(by, Vector3.ZERO, Vector3.ZERO)
 
 	# Disable the process function as no-longer held
-	set_process(false)
+	#set_process(false)
 
 	# Snap the handle back to the origin
 	transform = Transform3D.IDENTITY

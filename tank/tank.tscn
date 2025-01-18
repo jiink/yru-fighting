@@ -141,7 +141,7 @@ transform = Transform3D(-0.137188, 0.190265, -0.9721, 0.981855, 0.155831, -0.108
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07066, 1.10545)
 
 [node name="Syringe" parent="RigidBody3D" instance=ExtResource("5_4ed41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.286843, 1.81265)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5.02307e-09, 0.0488068, 1.75519)
 
 [editable path="RigidBody3D/LeverLeft"]
 [editable path="RigidBody3D/LeverRight"]
