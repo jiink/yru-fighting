@@ -140,7 +140,7 @@ transform = Transform3D(-0.137188, 0.190265, -0.9721, 0.981855, 0.155831, -0.108
 [node name="Node3D" parent="RigidBody3D" instance=ExtResource("4_g6ys7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07066, 1.10545)
 
-[node name="Syringe" parent="." instance=ExtResource("5_4ed41")]
+[node name="Syringe" parent="RigidBody3D" instance=ExtResource("5_4ed41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.286843, 1.81265)
 
 [editable path="RigidBody3D/LeverLeft"]
