@@ -1,11 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgmkh8oi52r34"]
+[gd_scene load_steps=9 format=3 uid="uid://cgmkh8oi52r34"]
 
 [ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="1_0i4dt"]
 [ext_resource type="PackedScene" uid="uid://d1tl07geqm5xq" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_fullglove_hand.tscn" id="1_xnwk0"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_3vh2r"]
 [ext_resource type="PackedScene" uid="uid://bpdj5njb8nhot" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_fullglove_hand.tscn" id="2_voaq5"]
+[ext_resource type="Material" uid="uid://3iodf3cm3cyy" path="res://player/player_mat.tres" id="3_g2q7f"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_rphva"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_d8uy6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_xhsbu"]
+radius = 0.1
+height = 0.2
+radial_segments = 32
+rings = 16
 
 [node name="Player" type="XROrigin3D"]
 
@@ -13,10 +20,14 @@
 
 [node name="VRCommonShaderCache" parent="XRCamera3D" instance=ExtResource("1_0i4dt")]
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XRCamera3D"]
+mesh = SubResource("SphereMesh_xhsbu")
+
 [node name="LeftHandController" type="XRController3D" parent="."]
 tracker = &"left_hand"
 
 [node name="LeftHand" parent="LeftHandController" instance=ExtResource("2_voaq5")]
+hand_material_override = ExtResource("3_g2q7f")
 
 [node name="FunctionPickup" parent="LeftHandController/LeftHand" instance=ExtResource("2_3vh2r")]
 
@@ -27,6 +38,7 @@ strafe = true
 tracker = &"right_hand"
 
 [node name="RightHand" parent="RightHandController" instance=ExtResource("1_xnwk0")]
+hand_material_override = ExtResource("3_g2q7f")
 
 [node name="FunctionPickup" parent="RightHandController/RightHand" instance=ExtResource("2_3vh2r")]
 
