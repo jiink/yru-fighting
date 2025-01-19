@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://damn8i4yddr4y"]
+[gd_scene load_steps=7 format=3 uid="uid://damn8i4yddr4y"]
 
 [ext_resource type="Script" path="res://tank/SyringeBody.cs" id="1_t65s0"]
 
@@ -17,7 +17,10 @@ bottom_radius = 0.0
 height = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dn8u"]
-size = Vector3(0.4, 1, 0.4)
+size = Vector3(0.0542993, 0.235779, 0.111621)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5wtww"]
+size = Vector3(0.055, 0.225, 0.115)
 
 [node name="Syringe" type="Node3D"]
 
@@ -37,7 +40,7 @@ mesh = SubResource("CylinderMesh_6hj0a")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SyringeBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14285, 0.740631, 0.144189)
 shape = SubResource("BoxShape3D_7dn8u")
 
 [node name="Label3D" type="Label3D" parent="SyringeBody"]
@@ -46,6 +49,10 @@ alpha_cut = 1
 text = "Sample text"
 font_size = 20
 outline_size = 8
+
+[node name="BodyHandle" type="MeshInstance3D" parent="SyringeBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142446, 0.740692, 0.130392)
+mesh = SubResource("BoxMesh_5wtww")
 
 [node name="Mount" type="CSGCombiner3D" parent="."]
 
