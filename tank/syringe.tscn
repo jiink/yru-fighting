@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://damn8i4yddr4y"]
+[gd_scene load_steps=6 format=3 uid="uid://damn8i4yddr4y"]
 
 [ext_resource type="Script" path="res://tank/SyringeBody.cs" id="1_t65s0"]
 
@@ -17,39 +17,35 @@ bottom_radius = 0.0
 height = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7dn8u"]
-size = Vector3(1.01, 0.4, 0.4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_4iq8c"]
-size = Vector3(0.325, 0.06, 0.065)
+size = Vector3(0.4, 1, 0.4)
 
 [node name="Syringe" type="Node3D"]
 
 [node name="SyringeBody" type="Area3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 4
 collision_mask = 196615
 script = ExtResource("1_t65s0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SyringeBody"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CylinderMesh_pfaly")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="SyringeBody"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.25, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 mesh = SubResource("CylinderMesh_6hj0a")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SyringeBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49869, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_7dn8u")
 
-[node name="Handle" type="Node3D" parent="SyringeBody"]
-
-[node name="Handle" type="MeshInstance3D" parent="SyringeBody/Handle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.63188, -0.151527, 0.123854)
-mesh = SubResource("BoxMesh_4iq8c")
-skeleton = NodePath("../..")
+[node name="Label3D" type="Label3D" parent="SyringeBody"]
+transform = Transform3D(0.717324, 0, -0.69674, 0, 1, 0, 0.69674, 0, 0.717324, 0.644434, 0.71576, 0)
+alpha_cut = 1
+text = "Sample text"
+font_size = 20
+outline_size = 8
 
 [node name="Mount" type="CSGCombiner3D" parent="."]
 

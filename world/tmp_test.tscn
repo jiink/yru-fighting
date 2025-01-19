@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://2ib3a2y76ck5"]
 
-[ext_resource type="PackedScene" uid="uid://cuiqhk8a4386u" path="res://tank/tank.tscn" id="1_0w8oj"]
+[ext_resource type="PackedScene" uid="uid://cuiqhk8a4386u" path="res://tank/prank.tscn" id="1_0w8oj"]
 [ext_resource type="Material" uid="uid://bc76lu1ox2lr2" path="res://world/orange_grid.tres" id="1_y2ncx"]
 [ext_resource type="PackedScene" uid="uid://cdnex5v8wlw5l" path="res://player/FlatscreenPlayer.tscn" id="2_hc5dh"]
 [ext_resource type="PackedScene" uid="uid://cg2tjktecxbli" path="res://world/throwable_item.tscn" id="4_rxg5r"]
@@ -51,5 +51,5 @@ platform_floor_layers = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59131, 0, 0)
 
 [editable path="Tank"]
-[editable path="Tank/RigidBody3D/LeverLeft"]
-[editable path="Tank/RigidBody3D/LeverRight"]
+[editable path="Tank/Tank/LeverLeft"]
+[editable path="Tank/Tank/LeverRight"]

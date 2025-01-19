@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://dswny631r0o67"]
 
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="1_4roit"]
-[ext_resource type="PackedScene" uid="uid://cuiqhk8a4386u" path="res://tank/tank.tscn" id="1_uhx1a"]
+[ext_resource type="PackedScene" uid="uid://b6ix82vh6my13" path="res://tank/tank.tscn" id="1_uhx1a"]
 [ext_resource type="PackedScene" uid="uid://cgmkh8oi52r34" path="res://player/Player.tscn" id="2_ku4mj"]
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="3_0sydv"]
 [ext_resource type="PackedScene" uid="uid://cg2tjktecxbli" path="res://world/throwable_item.tscn" id="4_38ofw"]
@@ -66,13 +66,10 @@ points = PackedVector3Array(-0.0476007, -0.0107106, -0.00952381, -0.0888861, -0.
 environment = SubResource("Environment_7fdlb")
 
 [node name="Tank" parent="." instance=ExtResource("1_uhx1a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675528, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0638474, 0.6754, -0.070701)
 
-[node name="MeshInstance3D" parent="Tank/RigidBody3D/VehicleWheel3D5" index="0"]
-skeleton = NodePath("..")
-
-[node name="Player" parent="Tank/RigidBody3D/LeverRight" index="3" instance=ExtResource("2_ku4mj")]
-transform = Transform3D(1, 0, 1.74846e-07, -1.58352e-07, 0.423994, 0.905665, -7.41337e-08, -0.905665, 0.423994, -0.500795, 0.692278, 0.954233)
+[node name="Player" parent="Tank" instance=ExtResource("2_ku4mj")]
+transform = Transform3D(-0.937178, 0, -0.34885, 0, 1, 0, 0.34885, 0, -0.937178, -0.288606, 0.0635121, 1.02493)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.821149, -0.512954, 0.250184, 0, 0.438371, 0.898794, -0.570714, 0.738044, -0.359968, 0, 0, 0)
@@ -155,8 +152,3 @@ size = Vector3(8.63422, 5.38977, 1.40076)
 
 [node name="lever_lol" parent="." instance=ExtResource("7_guivh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.76251, 1.22307, 0)
-
-[editable path="Tank"]
-[editable path="Tank/RigidBody3D/LeverLeft"]
-[editable path="Tank/RigidBody3D/LeverRight"]
-[editable path="Tank/RigidBody3D/LeverRight/Player"]
